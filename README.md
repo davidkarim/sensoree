@@ -1,0 +1,3 @@
+== README
+
+Sensoree is a web application to help anyone build a network of smart sensors using devices such as Raspberry Pi or Arduino. The service will inspire students of all ages to use these cheap computers to build the Internet of Things by providing an interface where they can send sensor data, view it, get notifications, and share it with others. Through Sensoree, students will be able to get instructions, sample code, a web API, sensor data storage, and an admin portal to interact with their data and their device. Initial support for basic sensors such as temperature, motion,and distance sensors can teach students to build and interact with other web services, receive notifications, and share graphic representations of their data with others.
