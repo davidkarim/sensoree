@@ -1,7 +1,7 @@
 class CreateNotifications < ActiveRecord::Migration
   def change
     create_table :notifications do |t|
-      t.integer :type
+      t.integer :kind
       t.string :address
       t.references :sensor, index: true, foreign_key: true
 

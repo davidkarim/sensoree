@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160518021606) do
   add_index "events", ["sensor_id"], name: "index_events_on_sensor_id"
 
   create_table "notifications", force: :cascade do |t|
-    t.integer  "type"
+    t.integer  "kind"
     t.string   "address"
     t.integer  "sensor_id"
     t.datetime "created_at", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20160518021606) do
   create_table "sensors", force: :cascade do |t|
     t.string   "name"
     t.integer  "unit"
-    t.integer  "type"
+    t.integer  "kind"
     t.boolean  "public"
     t.integer  "type_of_graph"
     t.integer  "user_id"
