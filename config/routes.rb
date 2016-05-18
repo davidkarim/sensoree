@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'welcome/index'
+
   root 'users#new'
   resources :notes
 
