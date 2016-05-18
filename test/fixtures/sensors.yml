@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  unit: 1
+  type: 1
+  public: false
+  type_of_graph: 1
+  user_id: 
+
+two:
+  name: MyString
+  unit: 1
+  type: 1
+  public: false
+  type_of_graph: 1
+  user_id: 
