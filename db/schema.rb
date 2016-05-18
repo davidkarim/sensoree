@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518021606) do
+ActiveRecord::Schema.define(version: 20160518200638) do
 
   create_table "events", force: :cascade do |t|
     t.float    "value"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20160518021606) do
   add_index "sensors", ["user_id"], name: "index_sensors_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
+    t.string   "username"
     t.string   "email"
     t.string   "password_digest"
     t.datetime "last_notified"
