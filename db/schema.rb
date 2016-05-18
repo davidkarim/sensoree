@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518200638) do
+ActiveRecord::Schema.define(version: 20160518204446) do
 
   create_table "events", force: :cascade do |t|
     t.float    "value"
@@ -23,6 +23,26 @@ ActiveRecord::Schema.define(version: 20160518200638) do
   end
 
   add_index "events", ["sensor_id"], name: "index_events_on_sensor_id"
+
+  create_table "nos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "nos", ["user_id"], name: "index_nos_on_user_id"
+
+  create_table "notes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id"
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "kind"
