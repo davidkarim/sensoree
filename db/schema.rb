@@ -24,16 +24,6 @@ ActiveRecord::Schema.define(version: 20160518204446) do
 
   add_index "events", ["sensor_id"], name: "index_events_on_sensor_id"
 
-  create_table "nos", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "nos", ["user_id"], name: "index_nos_on_user_id"
-
   create_table "notes", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"

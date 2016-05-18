@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+
+  root 'users#new'
   resources :notes
-  root 'sessions#new'
 
   resources :sessions
   resources :users
