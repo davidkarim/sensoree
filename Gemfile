@@ -29,7 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Postgres for database
 gem 'pg'
 
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 
 # Use Unicorn as the app server
 # gem 'unicorn'
