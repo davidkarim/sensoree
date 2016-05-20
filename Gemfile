@@ -42,6 +42,8 @@ group :development, :test do
   gem 'byebug'
   gem 'hirb'
   gem 'pry-rails'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers', '~> 2.8'
 end
 
 group :development do
