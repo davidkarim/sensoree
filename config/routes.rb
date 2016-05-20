@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   post 'events/create'
+  get 'events/show'
 
   root 'welcome#index'
 
