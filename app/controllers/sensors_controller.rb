@@ -10,7 +10,7 @@ class SensorsController < ApplicationController
   def show
     @sensors = current_user.sensors.find(sensor_params)
 
-    redirect_to graph_index_path
+  
   end
 
   def new
