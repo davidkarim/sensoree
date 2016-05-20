@@ -7,22 +7,20 @@
     <div class="row center">
       <h5 class="header col s12 light">
         <%= form_tag sessions_path do %>
-          <p>
+          <div class="input-field col s12">
             <%= label_tag :username %>
             <%= text_field_tag :username %>
-          </p>
-          <p>
+          </div>
+          <div class="input-field col s12">
             <%= label_tag :password %>
             <%= password_field_tag :password %>
-          </p>
+          </div>
           <div class="row center">
             <%= submit_tag 'Log in', class: "btn-large waves-effect waves-light orange" %>
           </div>
         <% end %>
         <br><br>
       </h5>
-
-
 
     </div>
   </div>

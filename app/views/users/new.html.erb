@@ -6,20 +6,19 @@
     <h1 class="header center orange-text">Register</h1>
     <div class="row center">
       <h5 class="header col s12 light">
-        <%= form_for @user do |f| %>
-          <p>
+        <%= form_for @user, html: {class: "new_user col s12"} do |f| %>
+          <div class="input-field col s12">
             <%= f.label :username %>
             <%= f.text_field :username %>
-          </p>
-          <p>
+          </div>
+          <div class="input-field col s12">
             <%= f.label :password %>
             <%= f.password_field :password %>
-          </p>
-          <p>
+          </div>
+          <div class="input-field col s12">
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation %>
-          </p>
-
+          </div>
       </h5>
       <div class="row center">
         <%= f.submit class: "btn-large waves-effect waves-light orange" %>
