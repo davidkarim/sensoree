@@ -1,1 +1,35 @@
- <h1>what the hell am I doing here</h1>
+<p id="notice"><%= notice %></p>
+
+<h1>Sensor Data</h1>
+
+<table class="striped" class="responsive-table">
+  <thead>
+    <tr>
+      <th>Sensor</th>
+      <th>Unit</th>
+      <th>Kind</th>
+      <th>Graph Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sensors.each do |sensor| %>
+      <tr>
+        <td><%= sensor.name %></td>
+        <td><%= sensor.unit %></td>
+        <td><%= sensor.kind %></td>
+        <td><%= sensor.type_of_graph %></td>
+        <td><%= link_to 'Show', sensor %></td>
+        <td><%= link_to 'Edit', edit_sensor_path(sensor) %></td>
+        <td><%= link_to 'Delete',
+                sensor, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sensor', new_sensor_path %>

@@ -1,4 +1,5 @@
 class SensorsController < ApplicationController
+  layout "dashboard"
   before_action :set_sensor, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
 
@@ -7,6 +8,15 @@ class SensorsController < ApplicationController
   end
 
   def show
+    @sensors = current_user.sensors.all
+
+    sensor = @sensors[0]
+    sensor_array = sensor.events.map do |s|
+      s.value
+    end
+
+    x_values = (1..4).to_a
+    @hash = x_values.zip(sensor_array)
   end
 
   def new
@@ -30,8 +40,6 @@ class SensorsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /notes/1
-  # PATCH/PUT /notes/1.json
   def update
     respond_to do |format|
       if @sensor.update(sensor_params)
@@ -44,8 +52,6 @@ class SensorsController < ApplicationController
     end
   end
 
-  # DELETE /notes/1
-  # DELETE /notes/1.json
   def destroy
     @sensor.destroy
     respond_to do |format|
@@ -56,12 +62,12 @@ class SensorsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_note
+    def set_sensor
       @sensor = current_user.sensors.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def note_params
-      params.require(:note).permit(:name, :body)
+    def sensor_params
+      params.require(:sensor).permit(:name, :unit, :kind, :type_of_graph)
     end
 end
