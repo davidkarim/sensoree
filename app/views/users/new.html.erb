@@ -1,19 +1,31 @@
-<h1>Register</h1>
 
-<%= form_for @user do |f| %>
-  <p>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </p>
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-  <% end %>
+</nav>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <br><br>
+    <h1 class="header center orange-text">Register</h1>
+    <div class="row center">
+      <h5 class="header col s12 light">
+        <%= form_for @user do |f| %>
+          <p>
+            <%= f.label :username %>
+            <%= f.text_field :username %>
+          </p>
+          <p>
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+          </p>
+          <p>
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
+          </p>
+
+      </h5>
+      <div class="row center">
+        <%= f.submit class: "btn-large waves-effect waves-light orange" %>
+      </div>
+      <br><br>
+      <% end %>
+    </div>
+  </div>
+</div>

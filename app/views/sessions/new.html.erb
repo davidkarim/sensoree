@@ -1,14 +1,29 @@
-<h1>Log in</h1>
-<%= form_tag sessions_path do %>
-  <p>
-    <%= label_tag :username %>
-    <%= text_field_tag :username %>
-  </p>
-  <p>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </p>
-  <p>
-    <%= submit_tag 'Log in' %>
-  </p>
-<% end %>
+
+</nav>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <br><br>
+    <h1 class="header center orange-text">Sign in</h1>
+    <div class="row center">
+      <h5 class="header col s12 light">
+        <%= form_tag sessions_path do %>
+          <p>
+            <%= label_tag :username %>
+            <%= text_field_tag :username %>
+          </p>
+          <p>
+            <%= label_tag :password %>
+            <%= password_field_tag :password %>
+          </p>
+          <div class="row center">
+            <%= submit_tag 'Log in', class: "btn-large waves-effect waves-light orange" %>
+          </div>
+        <% end %>
+        <br><br>
+      </h5>
+
+
+
+    </div>
+  </div>
+</div>

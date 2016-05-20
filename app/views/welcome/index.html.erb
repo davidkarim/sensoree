@@ -1,10 +1,17 @@
-<h1>Welcome to Sensoree</h1>
 
+<%= render :partial => "header" %>
 
-<p>
-  <%= link_to 'Sign in', new_session_path  %>
-</p>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <br><br>
+    <h1 class="header center orange-text">Sensoree</h1>
+    <div class="row center">
+      <h5 class="header col s12 light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
+    </div>
+    <div class="row center">
+      <%= link_to 'Register', new_user_path, class: "btn-large waves-effect waves-light orange" %>
+    </div>
+    <br><br>
 
-<p>
-<%= link_to 'Register', new_user_path %>
-</p>
+  </div>
+</div>

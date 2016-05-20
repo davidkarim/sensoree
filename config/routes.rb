@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
+  resources :sensors
   resources :notes
   resources :sessions
   resources :users
