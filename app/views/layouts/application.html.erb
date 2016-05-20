@@ -4,6 +4,7 @@
   <title>Sensoree</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
   <!-- Compiled and minified CSS -->
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
@@ -19,7 +20,7 @@
       <a href="#!" class="brand-logo">
         <i class="large material-icons">settings_input_antenna</i>
       </a>
-      <a href="#" data-activates="mobile-demo" 
+      <a href="#" data-activates="mobile-demo"
                   class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Getting Started</a></li>
@@ -34,7 +35,9 @@
     </div>
   </nav>
 
-<%= yield %>
+  <div class="container">
+      <%= yield %>
+    </div>
 
 </body>
 </html>

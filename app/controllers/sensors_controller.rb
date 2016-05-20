@@ -8,9 +8,15 @@ class SensorsController < ApplicationController
   end
 
   def show
-    @sensors = current_user.sensors.find(sensor_params)
+    @sensors = current_user.sensors.all
 
-  
+    sensor = @sensors[0]
+    sensor_array = sensor.events.map do |s|
+      s.value
+    end
+
+    x_values = (1..4).to_a
+    @hash = x_values.zip(sensor_array)
   end
 
   def new
