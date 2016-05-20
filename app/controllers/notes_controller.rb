@@ -19,8 +19,6 @@ class NotesController < ApplicationController
   def edit
   end
 
-  # POST /notes
-  # POST /notes.json
   def create
     @note = current_user.notes.new(note_params)
 
