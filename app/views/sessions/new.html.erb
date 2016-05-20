@@ -13,7 +13,7 @@
 <div class="section no-pad-bot" id="index-banner">
   <div class="container">
     <br><br>
-    <h1 class="header center orange-text">Log in</h1>
+    <h1 class="header center orange-text">Register</h1>
     <div class="row center">
       <h5 class="header col s12 light">
         <%= form_tag sessions_path do %>
@@ -25,12 +25,15 @@
             <%= label_tag :password %>
             <%= password_field_tag :password %>
           </p>
+          <div class="row center">
+            <%= submit_tag 'Log in', class: "btn-large waves-effect waves-light orange" %>
+          </div>
+        <% end %>
+        <br><br>
       </h5>
-      <div class="row center">
-        <%= submit_tag 'Log in', class: "btn-large waves-effect waves-light orange" %>
-      </div>
-      <br><br>
-      <% end %>
+
+
+
     </div>
   </div>
 </div>
