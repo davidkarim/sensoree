@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'events/create'
+
   root 'welcome#index'
 
   resources :sensors
