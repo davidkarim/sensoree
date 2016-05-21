@@ -18,13 +18,13 @@
           <div class="input-field col s12">
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation %>
+          </div><br><br>
+          <div class="row center">
+            <%= f.submit "Create User", class: "btn-large waves-effect waves-light orange" %>
+            <!-- <%= f.button "Create User", class: "btn-large orange" %> -->
           </div>
+        <% end %>
       </h5>
-      <div class="row center">
-        <%= f.submit class: "btn-large waves-effect waves-light orange" %>
-      </div>
-      <br><br>
-      <% end %>
     </div>
   </div>
 </div>
