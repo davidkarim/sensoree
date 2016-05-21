@@ -9,14 +9,13 @@ class SensorsController < ApplicationController
 
   def show
     @sensors = current_user.sensors.all
+    sensor = current_user.sensors.find(params[:id])
 
-    sensor = @sensors[0]
-    sensor_array = sensor.events.map do |s|
-      s.value
+    # Create array of two-dimensional arrays containing x and y values
+    @graph_data = sensor.events.map do | e |
+      Array([e.capture_time, e.value])
     end
 
-    x_values = (1..4).to_a
-    @hash = x_values.zip(sensor_array)
   end
 
   def new
