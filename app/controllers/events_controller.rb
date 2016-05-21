@@ -11,8 +11,15 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         format.html { redirect_to events_show_path, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-        # binding.pry
+        # format.json { render :show, status: :created, location: @event }
+        format.json { render :show }
+
+      #   format.json { render :json => {
+      #    :status => :ok,
+      #    :message => "Success!",
+      #    :html => "<b>congrats</b>"
+      # }.to_json }
+
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }

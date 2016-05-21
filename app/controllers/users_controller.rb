@@ -12,6 +12,8 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'Created user'
   end
 
+  private
+
   def generate_api
     alpha = ('A'..'Z').to_a
     alphanum = alpha + ('0'..'9').to_a
@@ -21,8 +23,7 @@ class UsersController < ApplicationController
     end
     api_key
   end
-
-  private
+  
   def user_params
     params.require(:user).
     permit(:username,
