@@ -15,3 +15,6 @@
 //= require turbolinks
 //= require_tree .
 //= require chartkick
+$(function(){
+  $(".button-collapse").sideNav();
+})
