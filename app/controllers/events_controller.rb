@@ -23,7 +23,6 @@ class EventsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
-        # binding.pry
       end
     end
 
