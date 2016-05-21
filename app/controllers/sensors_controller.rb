@@ -10,12 +10,11 @@ class SensorsController < ApplicationController
   def show
     @sensors = current_user.sensors.all
 
-    sensor = @sensors[0]
+    sensor = current_user.sensors.find(params[:id])
     sensor_array = sensor.events.map do |s|
       s.value
     end
-
-    x_values = (1..4).to_a
+    x_values = (1..1000).to_a
     @hash = x_values.zip(sensor_array)
   end
 
