@@ -3,7 +3,12 @@
 <h1>Sensor Data</h1>
 
 <div class="code-box">
-  <h6>Your API Key: <%= api_key %><i class="tiny material-icons tooltipped" data-tooltip="Your private API key is used to authenticate you. Use it on your device every time it sends data.">info_outline</i></h6>
+  <h6>Your API Key: <%= api_key %><i
+    class="tiny material-icons tooltipped"
+    data-tooltip="Your private API key is used
+                  to authenticate you. Use it
+                  on your device every
+                  time it sends data.">info_outline</i></h6>
 </div>
 
 <table class="striped" class="responsive-table">
@@ -24,9 +29,9 @@
         <td><%= sensor.unit %></td>
         <td><%= sensor.kind %></td>
         <td><%= sensor.type_of_graph %></td>
-        <td><%= link_to 'Show', sensor %></td>
-        <td><%= link_to 'Edit', edit_sensor_path(sensor) %></td>
-        <td><%= link_to 'Delete',
+        <td ><%= button_to 'Show', sensor, :method => "get"%></td>
+        <td><%= button_to 'Edit', edit_sensor_path(sensor), :method => "get" %></td>
+        <td><%= button_to 'Delete',
                 sensor, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
@@ -36,4 +41,4 @@
 
 <br>
 
-<%= link_to 'New Sensor', new_sensor_path %>
+<%= button_to 'New Sensor', new_sensor_path, :method => "get"  %>
