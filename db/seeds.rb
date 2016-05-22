@@ -71,8 +71,18 @@ event_list = [
   [2, 10.hours.ago, false, 5]
 ]
 
+def generate_api
+  alpha = ('A'..'Z').to_a
+  alphanum = alpha + ('0'..'9').to_a
+  api_key = alpha.sample
+  19.times do
+    api_key += alphanum.sample
+  end
+  api_key
+end
+
 user_list.each do | username, email, password |
-  User.create(username: username, email: email, password: password)
+  User.create(username: username, email: email, password: password, api_key: generate_api)
 end
 
 sensor_list.each do | name, unit, kind, public, type_of_graph, user_id |
