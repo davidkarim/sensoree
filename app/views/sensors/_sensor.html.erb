@@ -18,7 +18,7 @@
 
   <!-- In Sensor model, this is called kind -->
   <div class="input-field col s12">
-    <select>
+    <select name = "sensor[kind]">
       <option value="" disabled selected>Choose your option</option>
       <option value="1">Temperature</option>
       <option value="2">Ultrasound</option>
@@ -31,7 +31,7 @@
 <!-- This is an example of a select helper tag -->
 <!-- select("post", "person_id", Person.all.collect {|p| [ p.name, p.id ] }, {prompt: 'Select Person'}) -->
   <div class="input-field col s12">
-    <select>
+    <select name = "sensor[unit]">
       <option value="" disabled selected>Choose your option</option>
       <option value="1">Celsius</option>
       <option value="2">Fahrenheit</option>
@@ -55,7 +55,7 @@
   </div>
 
   <div class="input-field col s12">
-    <select>
+    <select name="sensor[type_of_graph]">
       <option value="" disabled selected>Choose your option</option>
       <option value="1">Bar Graph</option>
       <option value="2">Line Graph</option>
