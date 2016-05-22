@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
 .container{
   background-image: url(ras4.jpeg);
   background-size: contain;
@@ -28,4 +29,16 @@
 
 a{
   color: #399600;
+}
+
+.code-box {
+  border: 1px dashed grey;
+  background-color: #E8E8DC;
+  margin: 20px 20%;
+  padding: 0px 2%;
+  font-family: courier;
+  text-align: center;
+}
+.code-box i {
+  margin-left: 20px;
 }
