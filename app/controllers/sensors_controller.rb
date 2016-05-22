@@ -19,7 +19,7 @@ class SensorsController < ApplicationController
   end
 
   def new
-    @sensors = current_user.sensors.new
+    @sensor = current_user.sensors.new
   end
 
   def edit

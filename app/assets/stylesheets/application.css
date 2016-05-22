@@ -35,3 +35,9 @@ a{
 .code-box i {
   margin-left: 20px;
 }
+
+#public-switch {
+  float:right;
+  border: 1px solid black;
+  margin-bottom: 50px;
+}

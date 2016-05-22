@@ -1,59 +1,78 @@
 <div class="section no-pad-bot" id="index-banner">
   <div class="container">
-    <br><br>
-    <h3 class="header center orange-text">New Sensor  <%= submit_tag 'Submit',
-          class: "btn-large waves-effect waves-light orange" %></h1>
 
-
+    <h1 class="header center orange-text">New Sensor</h1>
     <div class="row center">
       <h5 class="header col s12 light">
-        <%= form_tag sensors_path do %>
+
+        <%= form_for @sensor, html: {class: "col s12"}  do |f| %>
+          <% if @sensor.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@sensor.errors.count, "error") %> prohibited this sensor from being saved:</h2>
+
+              <ul>
+              <% @sensor.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
           <div class="input-field col s12">
-            <%= label_tag :name %>
-            <%= text_field_tag :name %>
+            <%= f.label :name %><br>
+            <%= f.text_field :name %>
           </div>
 
+          <!-- In Sensor model, this is called kind -->
+          <div class="input-field col s12">
+            <select>
+              <option value="" disabled selected>Choose your option</option>
+              <option value="1">Temperature</option>
+              <option value="2">Ultrasound</option>
+              <option value="3">Motion</option>
+            </select>
+            <label>Type of Sensor</label>
+          </div>
 
           <div class="input-field col s12">
-            <%= label_tag "Unit" %>
-            <%= radio_button_tag(:unit, "Celcius") %>
-            <%= label_tag(:unit, "Celcius") %>
-            <%= radio_button_tag(:unit, "Fahrenheit") %>
-            <%= label_tag(:unit, "Fahrenheit") %>
-            <%= radio_button_tag(:unit, "cm") %>
-            <%= label_tag(:unit, "cm") %>
-            <%= radio_button_tag(:unit, "in") %>
-            <%= label_tag(:unit, "in") %>
-            <%= radio_button_tag(:unit, "feet") %>
-            <%= label_tag(:unit, "feet") %>
-                </div>
+            <select>
+              <option value="" disabled selected>Choose your option</option>
+              <option value="1">Celsius</option>
+              <option value="2">Fahrenheit</option>
+              <option value="3">Feet</option>
+              <option value="4">Inches</option>
+              <option value="5">Centimeter</option>
+            </select>
+            <label>Sensor unit</label>
+          </div>
 
           <div class="input-field col s12">
-            <%= label_tag "Kind" %>
-            <%= radio_button_tag(:kind, "Temperature") %>
-            <%= label_tag :kind, "Temperature" %>
-            <%= radio_button_tag(:kind, "Ultrasound") %>
-            <%= label_tag(:kind, "Ultrasound") %>
-    </div>
-          <div class="input-field col s12">
-            <%= label_tag "Public" %>
-            <%= check_box_tag(:pubic) %>
-            <%= label_tag(:public, "Yes") %>
-            <%= check_box_tag(:pubic) %>
-            <%= label_tag(:public, "No") %>
-    </div>
-          <div class="input-field col s12">
-            <%= label_tag "Graph Type" %>
-            <%= check_box_tag(:type_of_graph) %>
-            <%= label_tag(:type_of_graph, "Bar") %>
-            <%= check_box_tag(:type_of_graph) %>
-            <%= label_tag(:type_of_graph, "Line") %>
+            <!-- Switch -->
+            <div id="public-switch" class="switch">
+              <label>
+                Public
+                <input type="checkbox">
+                <span class="lever"></span>
+                Private
+              </label>
+            </div>
+          </div>
 
-    </div>
+          <div class="input-field col s12">
+            <select>
+              <option value="" disabled selected>Choose your option</option>
+              <option value="1">Bar Graph</option>
+              <option value="2">Line Graph</option>
+              <option value="3">Binary Graph</option>
+            </select>
+            <label>Type of Graph</label>
+          </div>
 
+          <div class="actions">
+            <%= f.submit %>
           </div>
         <% end %>
-        <br><br>
+
       </h5>
     </div>
   </div>
