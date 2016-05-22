@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   def new
-    @user = User.new
+    @users = User.new
   end
 
   def create
     user_values = user_params.merge(api_key: generate_api)
-    @user = User.new user_values
+    @users = User.new user_values
 
-    return render action: 'new' unless @user.save
+    return render action: 'new' unless @users.save
 
     redirect_to root_path, notice: 'Created user'
   end
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     end
     api_key
   end
-  
+
   def user_params
     params.require(:user).
     permit(:username,

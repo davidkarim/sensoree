@@ -13,13 +13,7 @@
  *= require_tree .
  *= require_self
  */
-.container{
-  background-image: url(ras4.jpeg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
-}
+
 
 .nav-wrapper{
   background-color: #399600;

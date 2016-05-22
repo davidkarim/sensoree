@@ -1,0 +1,60 @@
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <br><br>
+    <h3 class="header center orange-text">New Sensor  <%= submit_tag 'Submit',
+          class: "btn-large waves-effect waves-light orange" %></h1>
+
+
+    <div class="row center">
+      <h5 class="header col s12 light">
+        <%= form_tag sensors_path do %>
+          <div class="input-field col s12">
+            <%= label_tag :name %>
+            <%= text_field_tag :name %>
+          </div>
+
+
+          <div class="input-field col s12">
+            <%= label_tag "Unit" %>
+            <%= radio_button_tag(:unit, "Celcius") %>
+            <%= label_tag(:unit, "Celcius") %>
+            <%= radio_button_tag(:unit, "Fahrenheit") %>
+            <%= label_tag(:unit, "Fahrenheit") %>
+            <%= radio_button_tag(:unit, "cm") %>
+            <%= label_tag(:unit, "cm") %>
+            <%= radio_button_tag(:unit, "in") %>
+            <%= label_tag(:unit, "in") %>
+            <%= radio_button_tag(:unit, "feet") %>
+            <%= label_tag(:unit, "feet") %>
+                </div>
+
+          <div class="input-field col s12">
+            <%= label_tag "Kind" %>
+            <%= radio_button_tag(:kind, "Temperature") %>
+            <%= label_tag :kind, "Temperature" %>
+            <%= radio_button_tag(:kind, "Ultrasound") %>
+            <%= label_tag(:kind, "Ultrasound") %>
+    </div>
+          <div class="input-field col s12">
+            <%= label_tag "Public" %>
+            <%= check_box_tag(:pubic) %>
+            <%= label_tag(:public, "Yes") %>
+            <%= check_box_tag(:pubic) %>
+            <%= label_tag(:public, "No") %>
+    </div>
+          <div class="input-field col s12">
+            <%= label_tag "Graph Type" %>
+            <%= check_box_tag(:type_of_graph) %>
+            <%= label_tag(:type_of_graph, "Bar") %>
+            <%= check_box_tag(:type_of_graph) %>
+            <%= label_tag(:type_of_graph, "Line") %>
+
+    </div>
+
+          </div>
+        <% end %>
+        <br><br>
+      </h5>
+    </div>
+  </div>
+</div>
