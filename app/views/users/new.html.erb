@@ -6,10 +6,14 @@
     <h1 class="header center orange-text">Register</h1>
     <div class="row center">
       <h5 class="header col s12 light">
-        <%= form_for @user, html: {class: "new_user col s12"} do |f| %>
+        <%= form_for @users, html: {class: "new_user col s12"} do |f| %>
           <div class="input-field col s12">
             <%= f.label :username %>
             <%= f.text_field :username %>
+          </div>
+          <div class="input-field col s12">
+            <%= f.label :email %>
+            <%= f.password_field :email %>
           </div>
           <div class="input-field col s12">
             <%= f.label :password %>
@@ -25,6 +29,14 @@
           </div>
         <% end %>
       </h5>
+<<<<<<< HEAD
+      <div class="row center">
+        <%= f.submit class: "btn-large orange" %>
+      </div>
+      <br><br>
+      <% end %>
+=======
+>>>>>>> 034f1157be17438826f74315f9973bde1a18a8c6
     </div>
   </div>
 </div>
