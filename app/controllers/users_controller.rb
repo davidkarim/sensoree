@@ -15,19 +15,6 @@ class UsersController < ApplicationController
 
   private
 
-<<<<<<< HEAD
-  def generate_api
-    alpha = ('A'..'Z').to_a
-    alphanum = alpha + ('0'..'9').to_a
-    api_key = alpha.sample
-    19.times do
-      api_key += alphanum.sample
-    end
-    api_key
-  end
-
-=======
->>>>>>> 034f1157be17438826f74315f9973bde1a18a8c6
   def user_params
     params.require(:user).
     permit(:username,
