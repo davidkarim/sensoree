@@ -29,10 +29,10 @@
         <td><%= sensor.unit %></td>
         <td><%= sensor.kind %></td>
         <td><%= sensor.type_of_graph %></td>
-        <td ><%= button_to 'Show', sensor, :method => "get"%></td>
-        <td><%= button_to 'Edit', edit_sensor_path(sensor), :method => "get" %></td>
+        <td class="button-rows"><%= button_to 'Show', sensor, :method => "get", class: "btn-large waves-effect waves-light orange" %></td>
+        <td class="button-rows"><%= button_to 'Edit', edit_sensor_path(sensor), :method => "get", class: "btn-large waves-effect waves-light orange" %></td>
         <td><%= button_to 'Delete',
-                sensor, method: :delete, data: { confirm: 'Are you sure?' } %>
+                sensor, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-large waves-effect waves-light orange" %>
         </td>
       </tr>
     <% end %>
@@ -41,4 +41,4 @@
 
 <br>
 
-<%= button_to 'New Sensor', new_sensor_path, :method => "get"  %>
+<%= button_to 'New Sensor', new_sensor_path, :method => "get", class: "btn-large waves-effect waves-light orange"  %>
