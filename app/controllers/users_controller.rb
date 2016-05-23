@@ -13,6 +13,16 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'Created user'
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def show
+
+
+    redirect_to edit_user
+  end
+
   private
 
   def user_params
