@@ -41,3 +41,13 @@ a{
   border: 1px solid black;
   margin-bottom: 50px;
 }
+
+form[class=button_to] > i {
+  padding: 0px 10px;
+  font-size: smaller;
+  height: 34px;
+  line-height: 34px;
+}
+.button-rows {
+  width: 80px;
+}
