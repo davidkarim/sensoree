@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-layout "dashboard"
+layout "session"
 
   def new
     @users = User.new
@@ -20,6 +20,16 @@ layout "dashboard"
   end
 
   def show
+  end
+
+
+  def update
+    @user = User.find params[:id]
+
+    if @user.update(user_params)
+
+      redirect_to sensors_path(current_user), notice: "The Email/Password is successfully updated!"
+    end
   end
 
 
