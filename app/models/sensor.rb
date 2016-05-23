@@ -3,8 +3,8 @@ class Sensor < ActiveRecord::Base
   has_many :events
   has_many :notifications
 
-  enum unit: [:Celsius, :Fahrenheit, :cm, :in, :feet, ]
+  enum unit: [:Celsius, :Fahrenheit, :cm, :in, :feet]
   enum kind: [:temperature, :ultrasound]
-  enum type_of_graph: [:bar_graph1, :bar_graph2, :on_off]
-  
+  enum type_of_graph: [:line_graph, :bar_graph, :on_off]
+
 end

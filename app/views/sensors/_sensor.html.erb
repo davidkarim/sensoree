@@ -20,9 +20,8 @@
   <div class="input-field col s12">
     <select name = "sensor[kind]">
       <option value="" disabled selected>Choose your option</option>
-      <option value="1">Temperature</option>
-      <option value="2">Ultrasound</option>
-      <option value="3">Motion</option>
+      <option value="0">Temperature</option>
+      <option value="1">Ultrasound</option>
     </select>
     <label>Type of Sensor</label>
   </div>
@@ -32,11 +31,11 @@
   <div class="input-field col s12">
     <select name = "sensor[unit]">
       <option value="" disabled selected>Choose your option</option>
-      <option value="1">Celsius</option>
-      <option value="2">Fahrenheit</option>
-      <option value="3">Feet</option>
-      <option value="4">Inches</option>
-      <option value="5">Centimeter</option>
+      <option value="0">Celsius</option>
+      <option value="1">Fahrenheit</option>
+      <option value="2">Centimeter</option>
+      <option value="3">Inches</option>
+      <option value="4">Feet</option>
     </select>
     <label>Sensor unit</label>
   </div>
@@ -46,7 +45,7 @@
     <div id="public-switch" class="switch">
       <label>
         Public
-        <input type="checkbox">
+        <input name="sensor[public]" type="checkbox">
         <span class="lever"></span>
         Private
       </label>
@@ -56,9 +55,9 @@
   <div class="input-field col s12">
     <select name="sensor[type_of_graph]">
       <option value="" disabled selected>Choose your option</option>
+      <option value="0">Line Graph</option>
       <option value="1">Bar Graph</option>
-      <option value="2">Line Graph</option>
-      <option value="3">Binary Graph</option>
+      <option value="2">Binary Graph</option>
     </select>
     <label>Type of Graph</label>
   </div>

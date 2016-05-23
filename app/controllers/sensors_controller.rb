@@ -2,6 +2,7 @@ class SensorsController < ApplicationController
   layout "dashboard"
   before_action :set_sensor, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
+  before_action :default_values, only: [:create, :update]
 
   def index
     @sensors = current_user.sensors.all
@@ -87,8 +88,13 @@ class SensorsController < ApplicationController
       @sensor = current_user.sensors.find(params[:id])
     end
 
+    def default_values
+      params[:public] ||= false
+      params[:type_of_graph] ||= 0
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def sensor_params
-      params.require(:sensor).permit(:name, :unit, :kind, :type_of_graph)
+      params.require(:sensor).permit(:name, :unit, :kind, :type_of_graph, :public)
     end
 end
