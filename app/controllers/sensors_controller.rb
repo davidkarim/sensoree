@@ -8,12 +8,34 @@ class SensorsController < ApplicationController
   end
 
   def show
+    @axis_time = params[:axis_time]
+    case @axis_time
+    when "1" # 24-hour view selected
+      minute_range = 1440
+      @x_format = "HH:mm a"
+    when "2" # week view selected
+      minute_range = 10080
+      @x_format = "MMM d"
+    when "3" # month view selected
+      minute_range = 40320
+      @x_format = "d"
+    when "4" # year view selected
+      minute_range = 483840
+      @x_format = "MMM"
+    else
+      minute_range = 1440
+    end
+    # binding.pry
     @sensors = current_user.sensors.all
     sensor = current_user.sensors.find(params[:id])
 
     # Create array of two-dimensional arrays containing x and y values
-    @graph_data = sensor.events.map do | e |
-      Array([e.capture_time, e.value])
+    # uses last 24 hours worth of data
+    @graph_data =[]
+    sensor.events.each do | e |
+      if (Time.now - e.capture_time) / 60 < minute_range
+        @graph_data << [e.capture_time, e.value]
+      end
     end
 
   end
