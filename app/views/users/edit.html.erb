@@ -33,3 +33,11 @@
     <%= f.submit class: "btn-large waves-effect waves-light orange" %>
   </div>
 <% end %>
+
+<% [:info, :error].each do |key| %>
+  <% if flash[key] %>
+  <div class="<%= key %>" id="flash">
+    <%= flash[key] %>
+  </div>
+  <% end %>
+<% end %>
