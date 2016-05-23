@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+layout "dashboard"
+
   def new
     @users = User.new
   end
@@ -18,16 +20,16 @@ class UsersController < ApplicationController
   end
 
   def show
-
-
-    redirect_to edit_user
   end
+
+
 
   private
 
   def user_params
     params.require(:user).
     permit(:username,
+           :email,
            :password,
            :password_confirmation)
   end
