@@ -3,13 +3,6 @@
 
 
 
-<p>
-  <strong>Sensor: </strong>
-  <%= @sensor.name %>
-</p>
-
-
-
 <%= link_to 'Edit', edit_sensor_path(@sensor) %> |
 <%= link_to 'Back', sensors_path %>
 
@@ -19,7 +12,7 @@
   <!-- Bar Chart -->
 <div class="row">
   <div class="col-xs-6">
-    <h3>Sensor Data</h3>
-    <%= line_chart @graph_data %>
+    <h3>Sensor Data: <%= @sensor.name %></h3>
+    <%= line_chart @graph_data, {library: {hAxis: {format: 'MMM d'}, vAxis: {title: 'Degrees F'}}} %>
   </div>
 </div>

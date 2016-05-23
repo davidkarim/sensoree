@@ -42,7 +42,7 @@ a{
   margin-bottom: 50px;
 }
 
-form[class=button_to] > i {
+form[class=button_to] > i, form[class=button_to] > input {
   padding: 0px 10px;
   font-size: smaller;
   height: 34px;
