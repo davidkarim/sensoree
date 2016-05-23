@@ -1,4 +1,7 @@
-<h1>edit password</h1>
+<h1 class="header center orange-text"><%= @user.username %></h1>
+<h6 class="header center orange-text">Change Email/Password</h1>
+<div class="row center">
+  <h5 class="header col s12 light">
 
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
@@ -13,8 +16,11 @@
     </div>
   <% end %>
 
+  <div class="input-field col s12">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
 
-  <
   <div class="input-field col s12">
     <%= f.label :password %>
     <%= f.password_field :password %>
@@ -23,10 +29,7 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </div><br><br>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions" class="row center">
+    <%= f.submit class: "btn-large waves-effect waves-light orange" %>
   </div>
 <% end %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
