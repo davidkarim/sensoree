@@ -39,7 +39,7 @@ class SensorsController < ApplicationController
 
   def create
     @sensor = current_user.sensors.new(sensor_params)
-    binding.pry
+    
     respond_to do |format|
       if @sensor.save
         format.html { redirect_to @sensor, notice: 'Sensor was successfully created.' }
