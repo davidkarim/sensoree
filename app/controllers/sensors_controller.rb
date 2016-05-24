@@ -26,18 +26,7 @@ class SensorsController < ApplicationController
     else
       minute_range = 1440
     end
-    # binding.pry
-    @sensors = current_user.sensors.all
-    sensor = current_user.sensors.find(params[:id])
-
-    # Create array of two-dimensional arrays containing x and y values
-    # uses last 24 hours worth of data
-    @graph_data =[]
-    sensor.events.each do | e |
-      if (Time.now - e.capture_time) / 60 < minute_range
-        @graph_data << [e.capture_time, e.value]
-      end
-    end
+    @graph_data = @sensor.graph_data(@sensor.events, minute_range)
 
   end
 
@@ -77,7 +66,7 @@ class SensorsController < ApplicationController
   def destroy
     @sensor.destroy
     respond_to do |format|
-      format.html { redirect_to sensors_path, notice: 'Sensor was successfully destroyed.' }
+      format.html { redirect_to sensors_path, notice: 'Sensor was successfully deleted.' }
       format.json { head :no_content }
     end
   end
