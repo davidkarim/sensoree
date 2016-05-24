@@ -7,7 +7,7 @@ layout "session"
 
   def create
     # binding.pry
-    user_values = user_params.merge(api_key: generate_api)
+    user_values = user_params.merge(api_key: User.generate_api)
     @users = User.new user_values
 
     return render action: 'new' unless @users.save

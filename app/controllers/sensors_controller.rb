@@ -49,8 +49,8 @@ class SensorsController < ApplicationController
   end
 
   def create
+    @sensor = current_user.sensors.new(sensor_params)
     binding.pry
-    @sensors = current_user.sensors.new(sensor_params)
     respond_to do |format|
       if @sensor.save
         format.html { redirect_to @sensor, notice: 'Sensor was successfully created.' }
@@ -77,7 +77,7 @@ class SensorsController < ApplicationController
   def destroy
     @sensor.destroy
     respond_to do |format|
-      format.html { redirect_to sensor_url, notice: 'Sensor was successfully destroyed.' }
+      format.html { redirect_to sensors_path, notice: 'Sensor was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -89,12 +89,21 @@ class SensorsController < ApplicationController
     end
 
     def default_values
-      params[:public] ||= false
-      params[:type_of_graph] ||= 0
+      # params[:public] ||= false
+      params[:sensor][:type_of_graph] ||= 0
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sensor_params
+      params[:sensor][:unit] = params[:sensor][:unit].to_i
+      params[:sensor][:kind] = params[:sensor][:kind].to_i
+      params[:sensor][:type_of_graph] = params[:sensor][:type_of_graph].to_i
+      if params[:sensor][:public] == "on"
+        params[:sensor][:public] = true
+      else
+        params[:sensor][:public] = false
+      end
       params.require(:sensor).permit(:name, :unit, :kind, :type_of_graph, :public)
     end
 end

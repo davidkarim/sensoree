@@ -7,4 +7,5 @@ class Sensor < ActiveRecord::Base
   enum kind: [:temperature, :ultrasound]
   enum type_of_graph: [:line_graph, :bar_graph, :on_off]
 
+
 end
