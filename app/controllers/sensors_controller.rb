@@ -27,6 +27,7 @@ class SensorsController < ApplicationController
       minute_range = 1440
     end
     @graph_data = @sensor.graph_data(@sensor.events, minute_range)
+    # binding.pry
 
   end
 
@@ -39,7 +40,7 @@ class SensorsController < ApplicationController
 
   def create
     @sensor = current_user.sensors.new(sensor_params)
-    binding.pry
+    # binding.pry
     respond_to do |format|
       if @sensor.save
         format.html { redirect_to @sensor, notice: 'Sensor was successfully created.' }
