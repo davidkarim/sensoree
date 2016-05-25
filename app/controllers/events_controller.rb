@@ -40,9 +40,9 @@ class EventsController < ApplicationController
            :status => :unauthorized,
            :message => error_msg,
            :html => "<b>#{error_msg}</b>"
-        }.to_json }
+          }.to_json }
+          format.html { render text:"<h2>#{error_msg}</h2>" }
       end
-      # binding.pry
     end # if @user
 
   end # def create
