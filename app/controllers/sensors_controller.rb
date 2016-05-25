@@ -2,7 +2,7 @@ class SensorsController < ApplicationController
   layout "dashboard"
   before_action :set_sensor, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
-  before_action :default_values, only: [:create, :update]
+  before_action :default_values, only: [:new, :create, :update, :edit]
 
   def index
     @sensors = current_user.sensors.all
@@ -79,8 +79,12 @@ class SensorsController < ApplicationController
 
     def default_values
       # params[:public] ||= false
-      params[:sensor][:type_of_graph] ||= 0
+      # params[:sensor][:type_of_graph] ||= 0
 
+      # Used in the view to display humanized strings instead of snake_cased names
+      # temp holds array of 2d array, Hash[] converts to single hash
+      temp = Sensor.type_of_graphs.map {|key, value| [key.to_s.humanize, value]}
+      @type_of_graphs = Hash[temp]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

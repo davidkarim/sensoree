@@ -41,7 +41,7 @@
         <td><%= sensor.name %></td>
         <td><%= sensor.unit %></td>
         <td><%= sensor.kind %></td>
-        <td><%= sensor.type_of_graph %></td>
+        <td><%= sensor.type_of_graph.humanize %></td>
         <td class="button-rows"><%= button_to 'Show', sensor, :method => "get", class: "btn-large waves-effect waves-light orange" %></td>
         <td class="button-rows"><%= button_to 'Edit', edit_sensor_path(sensor), :method => "get", class: "btn-large waves-effect waves-light orange" %></td>
         <td><%= button_to 'Delete',

@@ -16,16 +16,17 @@
     <%= f.text_field :name %>
   </div>
 
-  <div class="input-field col s12">
-    <%= f.label :Kind_of_Sensor %>
-    <br>
-    <%= f.select :kind, [['Temperature', 'temperature'], ['Ultrasound', 'ultrasound']], prompt: 'Please Select' %>
-  </div>
   <!-- In Sensor model, this is called kind -->
+  <div class="input-field col s12">
+    <%= f.label "Type of Sensor" %>
+    <br>
+    <%= f.select :kind, Sensor.kinds, selected: Sensor.kinds[@sensor.kind] %>
+  </div>
+
   <div class="input-field col s12">
     <%= f.label :sensor_unit %>
     <br>
-    <%= f.select :kind, [['Celcius', 'celcius'], ['Fahrenheit', 'fahrenheit'], ['Centimeter', 'centimeter'], ['Inches', 'inches'], ['Feet', 'feet']], prompt: 'Please Select' %>
+    <%= f.select :unit, Sensor.units, selected: Sensor.units[@sensor.unit] %>
   </div>
 
   <div class="input-field col s12">
@@ -41,24 +42,12 @@
   </div>
 
   <div class="input-field col s12">
-    <select name="sensor[type_of_graph]">
-      <option value="" disabled selected>Choose your option</option>
-      <option value="0">Line Graph</option>
-      <option value="1">Bar Graph</option>
-      <option value="2">Binary Graph</option>
-    </select>
-    <label>Type of Graph</label>
-  </div>
-
-  <div class="input-field col s12">
-    <%= f.label :type_of_graph %>
+    <%= f.label "Type of Graph" %>
     <br>
-    <%= f.select :kind, [['Line Graph', 'line_graph'], ['Bar Graph', 'bar_graph'], ['Binary Graph', 'binary_graph']], prompt: 'Please Select' %>
+    <%= f.select :type_of_graph, @type_of_graphs, selected: Sensor.type_of_graphs[@sensor.type_of_graph] %>
   </div>
 
   <div class="actions">
-
     <%= f.submit class: "btn-large waves-effect waves-light orange" %>
-
   </div>
 <% end %>
