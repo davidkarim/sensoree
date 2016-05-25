@@ -6,7 +6,6 @@ layout "session"
   end
 
   def create
-    # binding.pry
     user_values = user_params.merge(api_key: User.generate_api)
     @users = User.new user_values
 

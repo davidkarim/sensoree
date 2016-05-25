@@ -3,17 +3,19 @@ class EventsController < ApplicationController
   protect_from_forgery with: :null_session
 
   def create
-
     # Remove api_key from parameters list and search for user
     new_params = event_params
     api_key = new_params.delete(:api_key)
-    # binding.pry
     @user = User.find_by(api_key: api_key)
 
-    # Look or sensor, if none is found find_by_id returns nil
-    sensor = @user.sensors.find_by_id(event_params[:sensor_id]) if @user
+    # Look for sensor, if none is found find_by_id returns nil
+    if @user
+      sensor = @user.sensors.find_by_id(event_params[:sensor_id])
+      time_dif = Time.zone.parse(new_params["capture_time"]).utc - sensor.events.last.capture_time.to_time if sensor
+    end
 
-    if @user && sensor
+    # Don't accept events with a frequency less than 30 seconds
+    if @user && sensor && time_dif > 30
       @event = Event.new(new_params)
 
       respond_to do |format|
@@ -28,11 +30,16 @@ class EventsController < ApplicationController
         end
       end # respond_to
     else
+      if time_dif && time_dif < 30
+        error_msg = "Increase rate of capture beyond 30 seconds"
+      else
+        error_msg = "Check your API Key and Sensor ID values"
+      end
       respond_to do |format|
           format.json { render :json => {
            :status => :unauthorized,
-           :message => "Check your API Key and Sensor ID values",
-           :html => "<b>Check your API Key and Sensor ID values</b>"
+           :message => error_msg,
+           :html => "<b>#{error_msg}</b>"
         }.to_json }
       end
       # binding.pry
