@@ -1,0 +1,68 @@
+We have organized a series of activities into projects in order to help in getting you started. The easiest way to verify that you have set up your account properly is to start with the first project and proceed from there. The sensors we use as examples are part of the SunFounder sensor kit, but any sensor would work. Let's start with Projects 1 and 2 to verify the Pi is set up properly.
+
+# Project 1
+
+Log into your account and take note of your API key. This key will allow you to upload data to Sensoree. Start out by adding a new sensor of type Internet. Technically not a sensor, we'll start out by having the Pi send ping data to the servers. A ping is a way to test connectivity across the Internet. The Raspberry Pi will ping a server, and then send to Sensoree, the amount of time it took to reach that server (measured in milliseconds).
+
+On the Raspberry Pi, you may need to reinstall the ping utility if your user account doesn't have access. By default, the user pi, doesn't have access. You can give pi access by issuing:
+
+`sudo apt-get install --reinstall iputils-ping`
+
+Test the ping:
+`ping google.com`
+
+Go to the following link to retrieve the full source code.
+<link here>
+
+# Project 2
+
+After validating that the previous project is sending data to Sensoree, let's now configure a temperature sensor from the Sunfounder kit. Start out by cloning the wiringPi repsitory from GitHub.
+
+`git clone git:://git.drogon.net/wiringPi`
+
+```
+Install wiringPi:
+cd wiringPi
+git pull origin
+./build
+```
+
+Now edit the /boot/config.txt file to add hardware access through /sys/bus directory. Add the following to the /boot/config.txt file:
+
+`dtoverlay=w1-gpio`
+
+Reboot your device: `sudo reboot`
+
+After the device has been rebooted, issue the following commands to mount the device drivers:
+`sudo modprobe w1-gpio`
+`sudo modprobe w1-therm`
+
+Now connect the thermometer sensor to the Pi. Navigate to the device directory:
+
+```
+cd /sys/bus/w1/devices/
+ls
+```
+
+Have a look at the devices shown, there should be a numeric directory such as 28-041623a757ff. Change to that directory:
+
+`cd 28-041623a757ff`
+
+To display a reading, issue the following command, while in that directory:
+
+`cat w1_slave`
+
+The following output, verifies a reading:
+
+7a 01 4b 46 7f ff 0c 10 ec : crc=ec YES
+7a 01 4b 46 7f ff 0c 10 ec t=23625
+
+Dividing the t value by 1000 gives the Celsius reading. Now in order to send these values to Sensoree, go to the following link to download the source code.
+
+<link here>
+
+# Project 3
+
+Ultrasound sensor.
+
+<link here>

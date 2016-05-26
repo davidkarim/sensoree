@@ -7,11 +7,16 @@ class EventsController < ApplicationController
     new_params = event_params
     api_key = new_params.delete(:api_key)
     @user = User.find_by(api_key: api_key)
-
     # Look for sensor, if none is found find_by_id returns nil
     if @user
       sensor = @user.sensors.find_by_id(event_params[:sensor_id])
-      time_dif = Time.zone.parse(new_params["capture_time"]).utc - sensor.events.last.capture_time.to_time if sensor
+      if sensor.events.empty?
+        # First event acquired by this sensor, assume last was 24 hours ago to allow to accept
+        last_time = 24.hours.ago
+      else
+        last_time = sensor.events.last.capture_time.to_time
+      end
+      time_dif = Time.zone.parse(new_params["capture_time"]).utc - last_time if sensor
     end
 
     # Don't accept events with a frequency less than 30 seconds

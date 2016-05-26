@@ -3,9 +3,9 @@ class Sensor < ActiveRecord::Base
   has_many :events
   has_many :notifications
 
-  enum unit: [:Celsius, :Fahrenheit, :cm, :in, :feet]
-  enum kind: [:temperature, :ultrasound]
-  enum type_of_graph: [:line_graph, :bar_graph, :on_off]
+  enum unit: [:Celsius, :Fahrenheit, :centimeters, :inches, :feet, :milliseconds]
+  enum kind: [:temperature, :ultrasound, :internet]
+  enum type_of_graph: [:curved_line_graph, :straight_line_graph, :bar_graph]
 
   # Create array of two-dimensional arrays containing x and y values
   # for the graph data.

@@ -13,7 +13,13 @@
 <div class="row">
   <div class="col-xs-6">
     <h3>Sensor Data: <%= @sensor.name %></h3>
-    <%= line_chart @graph_data, {library: {hAxis: {format: @x_format}, vAxis: {title: @sensor.unit }}} %>
+    <% if @sensor.straight_line_graph? %>
+      <%= line_chart @graph_data, {library: {curveType: "none", hAxis: {format: @x_format}, vAxis: {title: @sensor.unit }}} %>
+    <% elsif @sensor.curved_line_graph? %>
+      <%= line_chart @graph_data, {library: {curveType: "function", hAxis: {format: @x_format}, vAxis: {title: @sensor.unit }}} %>
+    <% else %>
+      <%= line_chart @graph_data, {library: {curveType: "function", hAxis: {format: @x_format}, vAxis: {title: @sensor.unit }}} %>
+    <% end %>
   </div>
 </div>
 
