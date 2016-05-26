@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'events/show'
 
   root 'welcome#index'
+  get '/gettingstarted', to: 'welcome#gettingstarted' 
 
   resources :sensors
   resources :notes
