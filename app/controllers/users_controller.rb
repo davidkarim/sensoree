@@ -8,6 +8,7 @@ layout "session"
   def create
     user_values = user_params.merge(api_key: User.generate_api)
     @users = User.new user_values
+    @users.send_email
 
     return render action: 'new' unless @users.save
 
