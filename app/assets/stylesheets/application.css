@@ -54,3 +54,11 @@ form[class=button_to] > i, form[class=button_to] > input {
 .material-icons{
   color: teal;
 }
+
+.indented-steps {
+    text-align: left;
+    margin-left: 10%;
+}
+.code-text {
+  font-family: courier;
+}

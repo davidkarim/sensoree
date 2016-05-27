@@ -12,7 +12,7 @@
         2 to verify the Pi is set up properly.
       </p>
       <br><br>
-      <h4 style="color: #ff9800;"># Project 1</h4>
+      <h4 style="color: #ff9800;">Project 1</h4>
 
       <ol style="text-align: left;">
         <li>Log into your account and take note of your API key.
@@ -30,44 +30,46 @@
           your user account doesn't have access.
           By default, the user pi, doesn't have access.
           You can give pi access by issuing:</li>
-        <li>sudo apt-get install --reinstall iputils-ping</li>
-        <li>Test the ping: ping google.com</li>
-        <li>Go to the following link to retrieve the full source code. link</li>
       </ol>
+      <div class="indented-steps">
+        <div class="code-text">sudo apt-get install --reinstall iputils-ping</div>
+        <div>Test the ping: <span class="code-text">ping google.com</span></div>
+        <div>Go to the following link to retrieve the full source code. link</div>
+      </div>
 
-      <h4 style="color: #ff9800;"># Project 2</h4>
+      <h4 style="color: #ff9800;">Project 2</h4>
 
 
     <ol style="text-align: left;">
       <li>After validating that the previous project is sending data to Sensoree,
         let's now configure a temperature sensor from the Sunfounder kit.
         Start out by cloning the wiringPi repsitory from GitHub.
-        git clone git:://git.drogon.net/wiringPi
-        <li>Install wiringPi: cd wiringPi</li>
-        <li>git pull origin ./build</li>
-        <li>Now edit the /boot/config.txt file to add hardware access
-          through /sys/bus directory.</li>
-        <li>Add the following to the /boot/config.txt file: dtoverlay=w1-gpio</li>
-        <li>Reboot your device: sudo reboot</li>
+        <span class="code-text">git clone git:://git.drogon.net/wiringPi</span>
+        <li>Install wiringPi: <span class="code-text">cd wiringPi</span></li>
+        <li><span class="code-text">git pull origin ./build</span></li>
+        <li>Now edit the <span class="code-text">/boot/config.txt</span> file to add hardware access
+          through <span class="code-text">/sys/bus</span> directory.</li>
+        <li>Add the following to the <span class="code-text">/boot/config.txt</span> file: <span class="code-text">dtoverlay=w1-gpio</span></li>
+        <li>Reboot your device: <span class="code-text">sudo reboot</span></li>
         <li>After the device has been rebooted, issue the following commands
           to mount the device drivers:
           <ol>
-            <li>sudo modprobe w1-gpio</li>
-            <li>sudo modprobe w1-therm</li>
+            <li><span class="code-text">sudo modprobe w1-gpio</span></li>
+            <li><span class="code-text">sudo modprobe w1-therm</span></li>
           </ol>
         </li>
         <li>  Now connect the thermometer sensor to the Pi. Navigate to the
           device directory:
-          cd /sys/bus/w1/devices/ls
+          <span class="code-text">cd /sys/bus/w1/devices/ls</span>
         </li>
         <li>Have a look at the devices shown,
-          there should be a numeric directory such as 28-041623a757ff.
-          Change to that directory: cd 28-041623a757ff</li>
+          there should be a numeric directory such as <span class="code-text">28-041623a757ff</span>.
+          Change to that directory: <span class="code-text">cd 28-041623a757ff</span></li>
         <li>To display a reading, issue the following command,
-          while in that directory: cat w1_slave</li>
-        <li>The following output, verifies a reading:
-          <li>7a 01 4b 46 7f ff 0c 10 ec : crc=ec YES
-          7a 01 4b 46 7f ff 0c 10 ec t=23625</li>
+          while in that directory: <span class="code-text">cat w1_slave</span></li>
+        <li>The following output, verifies a reading (your output will be slightly different):
+          <div class="indented-steps">7a 01 4b 46 7f ff 0c 10 ec : crc=ec YES
+          7a 01 4b 46 7f ff 0c 10 ec t=23625</div>
         </li>
         <li>Dividing the t value by 1000 gives the Celsius reading.
           Now in order to send these values to Sensoree,
@@ -75,7 +77,7 @@
       </ol>
 
 
-        <h4 style="color: #ff9800;"># Project 3</h4>
+        <h4 style="color: #ff9800;">Project 3</h4>
           <ol style="text-align: left;">
             <li>Ultrasound sensor.
 
