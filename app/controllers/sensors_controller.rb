@@ -115,6 +115,8 @@ class SensorsController < ApplicationController
       # temp holds array of 2d array, Hash[] converts to single hash
       temp = Sensor.type_of_graphs.map {|key, value| [key.to_s.humanize, value]}
       @type_of_graphs = Hash[temp]
+      temp = Sensor.notifications.map {|key, value| [key.to_s.humanize, value]}
+      @notifications = Hash[temp]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -122,11 +124,13 @@ class SensorsController < ApplicationController
       params[:sensor][:unit] = params[:sensor][:unit].to_i
       params[:sensor][:kind] = params[:sensor][:kind].to_i
       params[:sensor][:type_of_graph] = params[:sensor][:type_of_graph].to_i
+      params[:sensor][:notification] = params[:sensor][:notification].to_i
+      params[:sensor][:notification_value] = params[:sensor][:notification_value].to_i
       if params[:sensor][:public] == "on"
         params[:sensor][:public] = true
       else
         params[:sensor][:public] = false
       end
-      params.require(:sensor).permit(:name, :unit, :kind, :type_of_graph, :public)
+      params.require(:sensor).permit(:name, :unit, :kind, :type_of_graph, :public, :notification, :notification_value)
     end
 end

@@ -28,16 +28,20 @@ class EventsController < ApplicationController
     if @user && sensor && time_dif > 30
       @event = Event.new(new_params)
       @event.notified = false # Default value for notifications
-      # Check for notification setting
+      # Check for notification setting, and ensure there is a phone number provisioned
       unless sensor.no_notification?
         if sensor.upper_threshold? && @event.value > sensor.notification_value
-          # Value is above threshold, send notification
-          sensor.notify(@event.value)
-          @event.notified = true
+          # Value is above threshold, send notification (if phone number provisioned)
+          if !@user.phone_number.nil? && @user.phone_number.length > 9
+            result = sensor.notify(@user.phone_number, @event.value)
+            @event.notified = true if result
+          end
         elsif sensor.lower_threshold? && @event.value < sensor.notification_value
-          # Value is below threshold, send notification
-          sensor.notify(@event.value)
-          @event.notified = true
+          # Value is below threshold, send notification (if phone number provisioned)
+          if !@user.phone_number.nil? && @user.phone_number.length > 9
+            result = sensor.notify(@user.phone_number, @event.value)
+            @event.notified = true if result
+          end
         else
           @event.notified = false
         end

@@ -27,7 +27,7 @@ layout "session"
 
     if @user.update(user_params)
 
-      redirect_to sensors_path(current_user), notice: "The Email/Password is successfully updated!"
+      redirect_to sensors_path(current_user), notice: "The user has been successfully updated!"
     end
   end
 
@@ -40,6 +40,7 @@ layout "session"
     permit(:username,
            :email,
            :password,
-           :password_confirmation)
+           :password_confirmation,
+           :phone_number)
   end
 end
