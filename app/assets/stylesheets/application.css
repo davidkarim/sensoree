@@ -69,3 +69,8 @@ form[class=button_to] > i, form[class=button_to] > input {
 .timeline div#chart-1 {
   height: 150px !important;
 }
+.nav-buttons {
+  display: inline-block;
+  margin-left: 1em;
+  margin-right:1em;
+}

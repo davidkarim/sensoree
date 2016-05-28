@@ -1,11 +1,8 @@
 
 <p id="notice"><%= notice %></p>
 
-
-
-<%= link_to 'Edit', edit_sensor_path(@sensor) %> |
-<%= link_to 'Back', sensors_path %>
-
+<div class="nav-buttons"><%= button_to 'Back', sensors_path, method: "get", class: "btn-large waves-effect waves-light orange" if current_user %></div>
+<div class="nav-buttons"><%= button_to 'Edit ', edit_sensor_path(@sensor), method: "get", class: "btn-large waves-effect waves-light orange" if current_user %></div>
 
 
 

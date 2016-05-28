@@ -6,7 +6,7 @@ class Sensor < ActiveRecord::Base
   enum unit: [:Celsius, :Fahrenheit, :centimeters, :inches, :feet, :milliseconds]
   enum kind: [:temperature, :ultrasound, :internet]
   enum type_of_graph: [:curved_line_graph, :straight_line_graph, :timeline]
-  enum notification: [:none, :upper_threshold, :lower_threshold]
+  enum notification: [:no_notification, :upper_threshold, :lower_threshold]
 
   # Create array of two-dimensional arrays containing x and y values
   # for the graph data.

@@ -1,7 +1,7 @@
 class SensorsController < ApplicationController
   layout "dashboard"
   before_action :set_sensor, only: [:show, :edit, :update, :destroy]
-  before_action :require_logged_in
+  before_action :require_logged_in, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :default_values, only: [:new, :create, :update, :edit]
 
   def index
@@ -98,7 +98,13 @@ class SensorsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sensor
-      @sensor = current_user.sensors.find(params[:id])
+      if current_user
+        @sensor = current_user.sensors.find(params[:id])
+      else
+        # Determine if this user has set this sensor as public
+        public_sensor = Sensor.find(params[:id]).public
+        @sensor = Sensor.find(params[:id]) if public_sensor
+      end
     end
 
     def default_values
