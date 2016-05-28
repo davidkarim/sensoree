@@ -1,45 +1,52 @@
-<h1 class="header center orange-text"><%= @user.username %></h1>
-<h6 class="header center orange-text">Change Email/Password</h1>
-<div class="row center">
-  <h5 class="header col s12 light">
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <h1 class="header center orange-text"><%= @user.username %></h1>
+    <h6 class="header center orange-text">Change Email/Password</h6>
+    <div class="row center">
 
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h5 class="header col s12 light">
+        <%= form_for @user do |f| %>
+          <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+              <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="input-field col s12">
+            <%= f.label :email, class: "active" %>
+            <%= f.text_field :email %>
+          </div>
+
+          <div class="input-field col s12">
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+          </div>
+          <div class="input-field col s12">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
+          </div><br><br>
+          <div class="actions" class="row center">
+            <%= f.submit class: "btn-large waves-effect waves-light orange" %>
+            <br><br>
+            <%= link_to 'Cancel', sensors_path %>
+          </div>
+        <% end %>
+      </h5>
+
+      <% [:info, :error].each do |key| %>
+        <% if flash[key] %>
+        <div class="<%= key %>" id="flash">
+          <%= flash[key] %>
+        </div>
+        <% end %>
       <% end %>
-      </ul>
+
     </div>
-  <% end %>
-
-  <div class="input-field col s12">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
   </div>
-
-  <div class="input-field col s12">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="input-field col s12">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div><br><br>
-  <div class="actions" class="row center">
-    <%= f.submit class: "btn-large waves-effect waves-light orange" %>
-    <br><br>
-    <%= link_to 'Cancel', edit_user_path(current_user) %>
-  </div>
-<% end %>
-
-<% [:info, :error].each do |key| %>
-  <% if flash[key] %>
-  <div class="<%= key %>" id="flash">
-    <%= flash[key] %>
-  </div>
-  <% end %>
-<% end %>
+</div>
