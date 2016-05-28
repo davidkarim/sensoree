@@ -16,19 +16,31 @@ class EventsController < ApplicationController
       else
         last_time = sensor.events.last.capture_time.to_time
       end
+      # If no capture time is sent, use the current time
+      if new_params[:capture_time] == nil
+        new_params[:capture_time] = Time.now.to_s
+      end
       time_dif = Time.zone.parse(new_params["capture_time"]).utc - last_time if sensor
     end
 
     # Don't accept events with a frequency less than 30 seconds
     if @user && sensor && time_dif > 30
       @event = Event.new(new_params)
-
+      # Check for notification setting
+      unless sensor.no_notification?
+        if sensor.upper_threshold? && @event.value > sensor.notification_value
+          # Value is above threshold, send notification
+          sensor.notify(@event.value)
+        elsif sensor.lower_threshold? && @event.value < sensor.notification_value
+          # Value is below threshold, send notification
+          sensor.notify(@event.value)          
+        end
+      end
       respond_to do |format|
         if @event.save
           format.html { redirect_to events_show_path, notice: 'Event was successfully created.' }
           # format.json { render :show, status: :created, location: @event }
           format.json { render :show }
-
         else
           format.html { render :new }
           format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -59,17 +71,6 @@ class EventsController < ApplicationController
           :value,
           :capture_time,
           :notified)
-  end
-
-  def send_twilio
-    account_sid = ENV['TWI_ACCOUNT_SID'] # Twilio Account SID
-    auth_token = ENV['TWI_AUTH_TOKEN']   # Twilio Auth Token
-    @client = Twilio::REST::Client.new account_sid, auth_token
-    message = @client.account.messages.create(:body => "Hello from Ruby",
-        :to => "+19542243598",    # Replace with your phone number
-        :from => "+19542288318")  # Replace with your Twilio number
-    rescue Twilio::REST::RequestError => e
-      puts e.message
   end
 
 end

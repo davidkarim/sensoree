@@ -20,4 +20,19 @@ class Sensor < ActiveRecord::Base
     return graph_data
   end
 
+  def notify(value)
+    send_twilio(value)
+  end
+
+  def send_twilio(value)
+    account_sid = ENV['TWI_ACCOUNT_SID'] # Twilio Account SID
+    auth_token = ENV['TWI_AUTH_TOKEN']   # Twilio Auth Token
+    @client = Twilio::REST::Client.new account_sid, auth_token
+    message = @client.account.messages.create(:body => "Sensor #{self.name} triggered. Value: #{value} #{self.unit}",
+        :to => "+19542243598",    # User phone number
+        :from => "+19542288318")  # Twilio account phone number
+    rescue Twilio::REST::RequestError => e
+      puts e.message
+  end
+
 end
