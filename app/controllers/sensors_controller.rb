@@ -10,23 +10,49 @@ class SensorsController < ApplicationController
 
   def show
     @axis_time = params[:axis_time]
+    @grouped_data = []
     case @axis_time
     when "1" # 24-hour view selected
       minute_range = 1440
       @x_format = "HH:mm a"
+      @graph_data = @sensor.graph_data(@sensor.events, minute_range)
+      # Group two-dimensional array of hours, by hour
+      @grouped_data = @graph_data.map { |arr| [] << arr[0].beginning_of_hour << arr[1] }.uniq { |x| x[0] }
+      # Disregard values. Convert hours to two-dimensional array of one hour blocks
+      @grouped_data = @grouped_data.map { |x| [] << @sensor.name << x[0] << x[0].end_of_hour }
     when "2" # week view selected
       minute_range = 10080
       @x_format = "MMM d"
+      @graph_data = @sensor.graph_data(@sensor.events, minute_range)
+      # Group two-dimensional array of days, by day
+      @grouped_data = @graph_data.map { |arr| [] << arr[0].beginning_of_day << arr[1] }.uniq { |x| x[0] }
+      # Disregard values. Convert days to two-dimensional array of one day blocks
+      @grouped_data = @grouped_data.map { |x| [] << @sensor.name << x[0] << x[0].end_of_day }
     when "3" # month view selected
       minute_range = 40320
       @x_format = "d"
+      @graph_data = @sensor.graph_data(@sensor.events, minute_range)
+      # Group two-dimensional array of days, by day
+      @grouped_data = @graph_data.map { |arr| [] << arr[0].beginning_of_day << arr[1] }.uniq { |x| x[0] }
+      # Disregard values. Convert days to two-dimensional array of one day blocks
+      @grouped_data = @grouped_data.map { |x| [] << @sensor.name << x[0] << x[0].end_of_day }
     when "4" # year view selected
       minute_range = 483840
       @x_format = "MMM"
+      @graph_data = @sensor.graph_data(@sensor.events, minute_range)
+      # Group two-dimensional array of days, by day
+      @grouped_data = @graph_data.map { |arr| [] << arr[0].beginning_of_day << arr[1] }.uniq { |x| x[0] }
+      # Disregard values. Convert days to two-dimensional array of one day blocks
+      @grouped_data = @grouped_data.map { |x| [] << @sensor.name << x[0] << x[0].end_of_day }
     else
       minute_range = 1440
+      @graph_data = @sensor.graph_data(@sensor.events, minute_range)
+      # Group two-dimensional array of days, by day
+      @grouped_data = @graph_data.map { |arr| [] << arr[0].beginning_of_day << arr[1] }.uniq { |x| x[0] }
+      # Disregard values. Convert days to two-dimensional array of one day blocks
+      @grouped_data = @grouped_data.map { |x| [] << @sensor.name << x[0] << x[0].end_of_day }
     end
-    @graph_data = @sensor.graph_data(@sensor.events, minute_range)
+
     # binding.pry
 
   end

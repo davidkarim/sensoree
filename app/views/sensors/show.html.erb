@@ -17,6 +17,8 @@
       <%= line_chart @graph_data, {library: {curveType: "none", hAxis: {format: @x_format}, vAxis: {title: @sensor.unit }}} %>
     <% elsif @sensor.curved_line_graph? %>
       <%= line_chart @graph_data, {library: {curveType: "function", hAxis: {format: @x_format}, vAxis: {title: @sensor.unit }}} %>
+    <% elsif @sensor.timeline? %>
+      <div class="timeline"><%= timeline @grouped_data, {library: {width: 1000, hAxis: {format: @x_format}}} if !@grouped_data.empty? %></div>
     <% else %>
       <%= line_chart @graph_data, {library: {curveType: "function", hAxis: {format: @x_format}, vAxis: {title: @sensor.unit }}} %>
     <% end %>
