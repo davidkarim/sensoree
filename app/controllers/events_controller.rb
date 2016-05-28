@@ -61,4 +61,15 @@ class EventsController < ApplicationController
           :notified)
   end
 
+  def send_twilio
+    account_sid = ENV['TWI_ACCOUNT_SID'] # Twilio Account SID
+    auth_token = ENV['TWI_AUTH_TOKEN']   # Twilio Auth Token
+    @client = Twilio::REST::Client.new account_sid, auth_token
+    message = @client.account.messages.create(:body => "Hello from Ruby",
+        :to => "+19542243598",    # Replace with your phone number
+        :from => "+19542288318")  # Replace with your Twilio number
+    rescue Twilio::REST::RequestError => e
+      puts e.message
+  end
+
 end

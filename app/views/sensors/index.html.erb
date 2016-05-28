@@ -27,6 +27,7 @@
 <table class="striped" class="responsive-table">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Sensor</th>
       <th>Unit</th>
       <th>Kind</th>
@@ -36,8 +37,9 @@
   </thead>
 
   <tbody>
-    <% @sensors.each do |sensor| %>
+    <% @sensors.sort.each do |sensor| %>
       <tr>
+        <td><%= sensor.id %></td>
         <td><%= sensor.name %></td>
         <td><%= sensor.unit %></td>
         <td><%= sensor.kind %></td>
