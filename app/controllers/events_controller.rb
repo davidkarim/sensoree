@@ -20,20 +20,26 @@ class EventsController < ApplicationController
       if new_params[:capture_time] == nil
         new_params[:capture_time] = Time.now.to_s
       end
+      # Calculate difference in seconds, between last event, and current one
       time_dif = Time.zone.parse(new_params["capture_time"]).utc - last_time if sensor
     end
 
     # Don't accept events with a frequency less than 30 seconds
     if @user && sensor && time_dif > 30
       @event = Event.new(new_params)
+      @event.notified = false # Default value for notifications
       # Check for notification setting
       unless sensor.no_notification?
         if sensor.upper_threshold? && @event.value > sensor.notification_value
           # Value is above threshold, send notification
           sensor.notify(@event.value)
+          @event.notified = true
         elsif sensor.lower_threshold? && @event.value < sensor.notification_value
           # Value is below threshold, send notification
-          sensor.notify(@event.value)          
+          sensor.notify(@event.value)
+          @event.notified = true
+        else
+          @event.notified = false
         end
       end
       respond_to do |format|

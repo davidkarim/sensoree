@@ -21,7 +21,28 @@ class Sensor < ActiveRecord::Base
   end
 
   def notify(value)
-    send_twilio(value)
+    count = self.notification_count || 0
+    notification_window = self.notification_window || Time.now.to_s
+    unless count >= 10
+
+    end
+    if count >= 10  && Time.now - notification_window.to_time > 86400 # secs in a day
+      # After 24 hours have passed, reset counter to zero, send notification
+      self.notification_count = 0
+      self.notification_window = Time.now
+      # Send notification
+      send_twilio(value)
+    elsif count < 10
+      # Action to take as long as less than 10 notifications in a 24 hour period
+      send_twilio(value)
+      count += 1
+      self.notification_count = count
+      self.notification_window = notification_window
+      self.save
+    elsif count >= 10  && Time.now - notification_window.to_time <= 86400 # secs in a day
+      # Do not send notification, passed limit of 10 notifications per day
+      # Do nothing
+    end
   end
 
   def send_twilio(value)
