@@ -53,8 +53,6 @@ class SensorsController < ApplicationController
       @grouped_data = @grouped_data.map { |x| [] << @sensor.name << x[0] << x[0].end_of_day }
     end
 
-    # binding.pry
-
   end
 
   def new

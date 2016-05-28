@@ -29,6 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Postgres for database
 gem 'pg'
 
+# Twilio gem. Ability to send SMS notifications.
+gem 'twilio-ruby'
+
 gem 'rails_12factor', group: :production
 
 # Use Unicorn as the app server
