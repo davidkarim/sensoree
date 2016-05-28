@@ -30,16 +30,28 @@
   </div>
 
   <div class="input-field col s12">
+    <% if @sensor.public %>
+      <!-- Switch -->
+      <div id="public-switch" class="switch">
+        <label>
+          Private
+          <input name="sensor[public]" type="checkbox" checked>
+          <span class="lever"></span>
+          Public
+        </label>
+      </div>
+    <% else %>
     <!-- Switch -->
-    <div id="public-switch" class="switch">
-      <label>
-        Private
-        <input name="sensor[public]" type="checkbox">
-        <span class="lever"></span>
-        Public
-      </label>
-    </div>
-  </div>
+      <div id="public-switch" class="switch">
+        <label>
+          Private
+          <input name="sensor[public]" type="checkbox">
+          <span class="lever"></span>
+          Public
+        </label>
+      </div>
+    <% end %>
+  <div>
 
   <div class="input-field col s12">
     <%= f.label "Type of Graph" %>
