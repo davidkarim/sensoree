@@ -20,7 +20,7 @@ class Sensor < ActiveRecord::Base
     return graph_data
   end
 
-  def notify(phone_number, value)
+  def notify(phone_number, event)
     count = self.notification_count || 0
     notification_window = self.notification_window || Time.now.to_s
     unless count >= 10
@@ -31,11 +31,11 @@ class Sensor < ActiveRecord::Base
       self.notification_count = 0
       self.notification_window = Time.now
       # Send notification
-      send_twilio(phone_number, value)
+      send_twilio(phone_number, event.value, event.images.first.photo.url)
       return true
     elsif count < 10
       # Action to take as long as less than 10 notifications in a 24 hour period
-      send_twilio(phone_number, value)
+      send_twilio(phone_number, event.value, event.images.first.photo.url)
       count += 1
       self.notification_count = count
       self.notification_window = notification_window
@@ -48,15 +48,26 @@ class Sensor < ActiveRecord::Base
     end
   end
 
-  def send_twilio(phone_number, value)
+  def send_twilio(phone_number, value, image_url)
     account_sid = ENV['TWI_ACCOUNT_SID'] # Twilio Account SID
     auth_token = ENV['TWI_AUTH_TOKEN']   # Twilio Auth Token
     @client = Twilio::REST::Client.new account_sid, auth_token
-    message = @client.account.messages.create(:body => "Sensor #{self.name} triggered. Value: #{value} #{self.unit}",
-        :to => "+1#{phone_number}",    # User phone number
-        :from => "+19542288318")  # Twilio account phone number
-    rescue Twilio::REST::RequestError => e
-      puts e.message
+    if image_url
+      message_body = "Sensor #{self.name} triggered. Value: #{value} #{self.unit}"
+      message = @client.account.messages.create(:body => message_body,
+          :to => "+1#{phone_number}",    # User phone number
+          :from => "+19542288318",  # Twilio account phone number
+          :media_url => "#{image_url}")
+
+    else
+      message_body = "Sensor #{self.name} triggered. Value: #{value} #{self.unit}"
+      message = @client.account.messages.create(:body => message_body,
+          :to => "+1#{phone_number}",    # User phone number
+          :from => "+19542288318")  # Twilio account phone number
+
+    end
+
+
   end
 
 end

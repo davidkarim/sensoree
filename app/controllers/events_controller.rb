@@ -6,6 +6,7 @@ class EventsController < ApplicationController
     # Remove api_key from parameters list and search for user
     new_params = event_params
     api_key = new_params.delete(:api_key)
+    photo_params = new_params.delete(:photo)
     @user = User.find_by(api_key: api_key)
     # Look for sensor, if none is found find_by_id returns nil
     if @user
@@ -28,26 +29,34 @@ class EventsController < ApplicationController
     if @user && sensor && time_dif > 30
       @event = Event.new(new_params)
       @event.notified = false # Default value for notifications
+
+      event_save_success = @event.save
+      @image = Image.new(photo: photo_params) if photo_params
+      @image.event= @event
+      image_save_success = @image.save
+
       # Check for notification setting, and ensure there is a phone number provisioned
       unless sensor.no_notification?
         if sensor.upper_threshold? && @event.value > sensor.notification_value
           # Value is above threshold, send notification (if phone number provisioned)
           if !@user.phone_number.nil? && @user.phone_number.length > 9
-            result = sensor.notify(@user.phone_number, @event.value)
+            result = sensor.notify(@user.phone_number, @event)
             @event.notified = true if result
           end
         elsif sensor.lower_threshold? && @event.value < sensor.notification_value
           # Value is below threshold, send notification (if phone number provisioned)
           if !@user.phone_number.nil? && @user.phone_number.length > 9
-            result = sensor.notify(@user.phone_number, @event.value)
+            result = sensor.notify(@user.phone_number, @event)
             @event.notified = true if result
           end
         else
           @event.notified = false
         end
       end
+
+
       respond_to do |format|
-        if @event.save
+        if event_save_success
           format.html { redirect_to events_show_path, notice: 'Event was successfully created.' }
           # format.json { render :show, status: :created, location: @event }
           format.json { render :show }
@@ -80,6 +89,7 @@ class EventsController < ApplicationController
           :sensor_id,
           :value,
           :capture_time,
+          :photo,
           :notified)
   end
 
