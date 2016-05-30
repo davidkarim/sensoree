@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-layout "session"
+
+layout "dashboard"
 
   def new
     @users = User.new
@@ -9,9 +10,25 @@ layout "session"
     user_values = user_params.merge(api_key: User.generate_api)
     @users = User.new user_values
 
-    return render action: 'new' unless @users.save
-
-    redirect_to root_path, notice: 'Created user'
+    if @users.save
+      session[:user_id] = @users.id
+      redirect_to sensors_path, notice: 'Created user'
+    else
+      render action: 'new'
+    end
+    # respond_to do |format|
+    #   if @users.save
+    #
+    #     UserMailer.welcome_email(@users).deliver_now
+    #
+    #     format.html { redirect_to(new_session_path(@users),
+    #             notice: 'User was successfully created.') }
+    #     format.json { render json: @users, status: :created, location: @users }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @users.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def edit

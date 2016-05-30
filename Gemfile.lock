@@ -194,6 +194,7 @@ DEPENDENCIES
   hirb
   jbuilder (~> 2.0)
   jquery-rails
+  mail
   materialize-sass
   pg
   pry-rails

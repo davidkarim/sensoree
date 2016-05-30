@@ -16,20 +16,18 @@
 
     <nav style="color: teal;">
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">
+        <a href="#!" class="brand-logo" style="padding-left: 2.5%;">
           <i class="large material-icons" style="color: white;">settings_input_antenna</i>
         </a>
         <a href="#" data-activates="mobile-demo"
-                    class="button-collapse"><i class="material-icons">menu</i></a>
+                    class="button-collapse"><i class="material-icons" style="color: white;">menu</i></a>
         <ul class="right hide-on-med-and-down">
 
           <li><%= link_to 'Getting Started', gettingstarted_path %></li>
-          <li><a href="#">About</a></li>
           <li><%= link_to 'Sign in', new_session_path  %></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li><a href="#">Getting Started</a></li>
-          <li><a href="#">About</a></li>
+          <li><%= link_to 'Getting Started', gettingstarted_path %></li>
           <li><%= link_to 'Sign in', new_session_path %></li>
         </ul>
       </div>

@@ -4,6 +4,7 @@ class SensorsController < ApplicationController
   before_action :require_logged_in, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :default_values, only: [:new, :create, :update, :edit]
 
+
   def index
     @sensors = current_user.sensors.all
   end
