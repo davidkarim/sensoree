@@ -23,19 +23,21 @@ class Sensor < ActiveRecord::Base
   def notify(phone_number, event)
     count = self.notification_count || 0
     notification_window = self.notification_window || Time.now.to_s
-    unless count >= 10
 
+    image_url = []
+    unless event.images.empty?
+      image_url = event.images.first.photo.url
     end
     if count >= 10  && Time.now - notification_window.to_time > 86400 # secs in a day
       # After 24 hours have passed, reset counter to zero, send notification
       self.notification_count = 0
       self.notification_window = Time.now
       # Send notification
-      send_twilio(phone_number, event.value, event.images.first.photo.url)
+      send_twilio(phone_number, event.value, image_url)
       return true
     elsif count < 10
       # Action to take as long as less than 10 notifications in a 24 hour period
-      send_twilio(phone_number, event.value, event.images.first.photo.url)
+      send_twilio(phone_number, event.value, image_url)
       count += 1
       self.notification_count = count
       self.notification_window = notification_window
@@ -52,7 +54,7 @@ class Sensor < ActiveRecord::Base
     account_sid = ENV['TWI_ACCOUNT_SID'] # Twilio Account SID
     auth_token = ENV['TWI_AUTH_TOKEN']   # Twilio Auth Token
     @client = Twilio::REST::Client.new account_sid, auth_token
-    if image_url
+    if !image_url.empty?
       message_body = "Sensor #{self.name} triggered. Value: #{value} #{self.unit}"
       message = @client.account.messages.create(:body => message_body,
           :to => "+1#{phone_number}",    # User phone number

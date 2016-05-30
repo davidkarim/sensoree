@@ -31,9 +31,11 @@ class EventsController < ApplicationController
       @event.notified = false # Default value for notifications
 
       event_save_success = @event.save
-      @image = Image.new(photo: photo_params) if photo_params
-      @image.event= @event
-      image_save_success = @image.save
+      if photo_params
+        @image = Image.new(photo: photo_params)
+        @image.event= @event
+        image_save_success = @image.save
+      end
 
       # Check for notification setting, and ensure there is a phone number provisioned
       unless sensor.no_notification?
