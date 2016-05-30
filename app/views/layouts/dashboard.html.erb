@@ -24,12 +24,12 @@
           class="material-icons" style="color: white;">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li><%= link_to 'Account', edit_user_path(current_user) if current_user %></li>
-      <li><%= link_to 'Getting Started', gettingstarted_path %></li>
+    
       <li><%= link_to 'Logout', root_path if current_user %></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
       <li><%= link_to 'Account', edit_user_path(current_user) if current_user %></li>
-      <li><%= link_to 'Getting Started', gettingstarted_path %></li>
+
       <li><%= link_to 'Logout', root_path if current_user %></li>
     </ul>
   </div>
