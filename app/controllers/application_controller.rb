@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  
+
   protect_from_forgery with: :exception
 
   include UsersHelper
@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   def require_logged_in
     return true if current_user
 
-    return redirect_to user_path
+    return redirect_to sensors_path(current_user)
   end
 end

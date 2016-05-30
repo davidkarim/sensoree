@@ -35,9 +35,17 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-
-  # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gmail.com',
+    user_name:            '<juan235711>',
+    password:             'password',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
+    # Raises error for missing translations
+    # config.action_view.raise_on_missing_translations = true
 
   config.paperclip_defaults = {
   storage: :s3,
