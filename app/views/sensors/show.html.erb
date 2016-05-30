@@ -14,7 +14,7 @@
 <div class="nav-buttons"><%= button_to 'Back', sensors_path, method: "get", class: "btn-large waves-effect waves-light orange" if current_user %></div>
 <div class="nav-buttons"><%= button_to 'Edit ', edit_sensor_path(@sensor), method: "get", class: "btn-large waves-effect waves-light orange" if current_user %></div>
 
-
+<%# image_tag @sensor.events.last.images.first.photo.url %>
 
   <!-- Bar Chart -->
 <div class="row">
@@ -51,6 +51,19 @@
         <div class="row">
           Your public link: <%= link_to sensor_url %>
         </div>
+      <% end %>
+      <% @sensor.events.each do | event | %>
+        <% if event.images.count >= 1 %>
+
+          <div class="col s12 m2">
+            <div class="card">
+              <div class="card-image">
+                <%= link_to(image_tag(event.images.first.photo.url(:thumb)), event.images.first.photo.url(:original)) %>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
       <% end %>
     </div>
   </div>
