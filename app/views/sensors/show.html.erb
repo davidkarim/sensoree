@@ -52,6 +52,19 @@
           Your public link: <%= link_to sensor_url %>
         </div>
       <% end %>
+      <% @sensor.events.each do | event | %>
+        <% if event.images.count >= 1 %>
+
+          <div class="col s12 m2">
+            <div class="card">
+              <div class="card-image">
+                <%= link_to(image_tag(event.images.first.photo.url(:thumb)), event.images.first.photo.url(:original)) %>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+      <% end %>
     </div>
   </div>
 <% end %>

@@ -12,7 +12,7 @@
         2 to verify the Pi is set up properly.
       </p>
       <br><br>
-      <h4 style="color: #ff9800;">Project 1</h4>
+      <h4 style="color: #ff9800;">Project 1 - Raspberry Pi</h4>
 
       <ol style="text-align: left;">
         <li>Log into your account and take note of your API key.
@@ -37,52 +37,56 @@
         <div>Go to the following link to retrieve the full source code. link</div>
       </div>
 
-      <h4 style="color: #ff9800;">Project 2</h4>
+      <h4 style="color: #ff9800;">Project 2 - Temperature Sensor</h4>
 
 
     <ol style="text-align: left;">
-      <li>After validating that the previous project is sending data to Sensoree,
-        let's now configure a temperature sensor from the Sunfounder kit.
-        Start out by cloning the wiringPi repsitory from GitHub.
-        <span class="code-text">git clone git:://git.drogon.net/wiringPi</span>
-        <li>Install wiringPi: <span class="code-text">cd wiringPi</span></li>
-        <li><span class="code-text">git pull origin ./build</span></li>
-        <li>Now edit the <span class="code-text">/boot/config.txt</span> file to add hardware access
-          through <span class="code-text">/sys/bus</span> directory.</li>
-        <li>Add the following to the <span class="code-text">/boot/config.txt</span> file: <span class="code-text">dtoverlay=w1-gpio</span></li>
-        <li>Reboot your device: <span class="code-text">sudo reboot</span></li>
-        <li>After the device has been rebooted, issue the following commands
-          to mount the device drivers:
-          <ol>
-            <li><span class="code-text">sudo modprobe w1-gpio</span></li>
-            <li><span class="code-text">sudo modprobe w1-therm</span></li>
-          </ol>
-        </li>
-        <li>  Now connect the thermometer sensor to the Pi. Navigate to the
-          device directory:
-          <span class="code-text">cd /sys/bus/w1/devices/ls</span>
-        </li>
-        <li>Have a look at the devices shown,
-          there should be a numeric directory such as <span class="code-text">28-041623a757ff</span>.
-          Change to that directory: <span class="code-text">cd 28-041623a757ff</span></li>
-        <li>To display a reading, issue the following command,
-          while in that directory: <span class="code-text">cat w1_slave</span></li>
-        <li>The following output, verifies a reading (your output will be slightly different):
-          <div class="indented-steps">7a 01 4b 46 7f ff 0c 10 ec : crc=ec YES
-          7a 01 4b 46 7f ff 0c 10 ec t=23625</div>
-        </li>
-        <li>Dividing the t value by 1000 gives the Celsius reading.
-          Now in order to send these values to Sensoree,
-          go to the following link to download the source code. link</li>
+    <li>After validating that the previous project is sending data to Sensoree,
+      let's now configure a temperature sensor from the Sunfounder kit.
+      Start out by cloning the wiringPi repsitory from GitHub.</li>
+    <p><span class="code-text">git clone git:://git.drogon.net/wiringPi</span></p>
+      <li>Install wiringPi: </li>
+      <p><span class="code-text">cd wiringPi</span></p>
+      <p><span class="code-text">git pull origin ./build</span></p>
+      <li>Now edit the <span class="code-text">/boot/config.txt</span> file to add hardware access
+        through <span class="code-text">/sys/bus</span> directory.</li>
+      <li>Add the following to the <span class="code-text">/boot/config.txt</span> file: </li>
+      <p><span class="code-text">dtoverlay=w1-gpio</span></p>
+      <li>Reboot your device: <span class="code-text">sudo reboot</span></li>
+      <li>After the device has been rebooted, issue the following commands
+        to mount the device drivers:</li>
+          <p><span class="code-text">sudo modprobe w1-gpio</span></p>
+          <p><span class="code-text">sudo modprobe w1-therm</span></p>
+      </li>
+      <li>  Now connect the thermometer sensor to the Pi. Navigate to the
+        device directory:
+        <span class="code-text">cd /sys/bus/w1/devices/ls</span>
+      </li>
+      <li>Have a look at the devices shown,
+        there should be a numeric directory such as <span class="code-text">28-041623a757ff</span>.
+        Change to that directory: <span class="code-text">cd 28-041623a757ff</span></li>
+      <li>To display a reading, issue the following command,
+        while in that directory: <span class="code-text">cat w1_slave</span></li>
+      <li>The following output, verifies a reading (your output will be slightly different):
+        <div class="indented-steps">7a 01 4b 46 7f ff 0c 10 ec : crc=ec YES
+        7a 01 4b 46 7f ff 0c 10 ec t=23625</div>
+      </li>
+      <li>Dividing the t value by 1000 gives the Celsius reading.
+        Now in order to send these values to Sensoree,
+        go to the following link to download the source code. link</li>
       </ol>
 
 
-        <h4 style="color: #ff9800;">Project 3</h4>
-          <ol style="text-align: left;">
-            <li>Ultrasound sensor.
+        <h4 style="color: #ff9800;">Project 3 - Ultrasound Sensor</h4>
 
-            link</li>
-          </ol>
+
+        <ol style="text-align: left;">
+
+          <li>The ultrasound sensor's sample file is located here:</li>
+          <p>LINK</p>
+          <li>The wiring for the ultrasound sensor is defined in the file. The sample file, by default, also shows readings every half a second, but uploads to Sensoree are done every 30 seconds. Sensoree will not accept readings with a higher frequency, so its best to keep that frequency intact.</li>
+
+        </ol>
 
 
 
