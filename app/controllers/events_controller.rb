@@ -26,7 +26,7 @@ class EventsController < ApplicationController
     end
 
     # Don't accept events with a frequency less than 30 seconds
-    if @user && sensor && time_dif > 30
+    if @user && sensor && time_dif > 5
       @event = Event.new(new_params)
       @event.notified = false # Default value for notifications
 
