@@ -52,7 +52,7 @@
           Your public link: <%= link_to sensor_url %>
         </div>
       <% end %>
-      <% @sensor.events.each do | event | %>
+      <% @sensor.events.reverse_each do | event | %>
         <% if event.images.count >= 1 %>
 
           <div class="col s12 m2">
